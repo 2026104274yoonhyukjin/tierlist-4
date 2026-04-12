@@ -1,4 +1,4 @@
-   <!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="ko">
 
     <head>
@@ -24,12 +24,14 @@
             header {
                 text-align: center;
                 margin-bottom: 40px;
+                margin-right: 200px;
             }
 
             h1 {
                 font-size: 2.5rem;
                 margin-bottom: 10px;
                 color: #333;
+                
             }
 
             p {
@@ -41,7 +43,7 @@
            [실습 1] 메인 레이아웃 (보드와 사이드 패널 가로 배치)
            ========================================= */
             .layout-wrapper {
-                max-width: 1200px;
+                max-width: 1000px;
                 margin: 0 auto;
 
                 /* TODO 1: 보드와 사이드 패널을 가로로 배치하고, 공간이 좁아지면 자연스럽게 줄바꿈되도록 설정하세요. (간격: 20px) */
@@ -57,7 +59,8 @@
                 border-radius: 12px;
                 border: 2px solid #333;
                 overflow: hidden;
-
+                flex-wrap: wrap;
+                width: 500px;
                 /* TODO 2: 남은 가로 공간을 꽉 채우도록 설정하고, 내부 행(Row)들이 세로로 쌓이도록 방향을 지정하세요. */
                 /* 💡 힌트: flex-grow와 flex-direction 속성이 필요합니다. (우선 display: flex; 를 선언하는 것도 잊지 마세요!) */
                 display: flex; /* 가로 배치 (라벨/아이템) */
@@ -79,7 +82,8 @@
             .tier-row {
                 border-bottom: 2px solid #333;
                 min-height: 120px;
-
+                flex-wrap: nowrap;
+                width: 100%;
                 /* TODO 3: 좌측 등급 라벨과 우측 아이템 드롭 영역을 가로로 배치하세요. */
                 /* 💡 힌트: 요소를 가로로 나열하는 가장 기본적인 Flexbox 속성 1가지만 적용하면 됩니다. */
                 display: flex; /* 가로 배치 (라벨/아이템) */
@@ -129,6 +133,7 @@
             .item-pool {
                 padding: 15px;
                 gap: 10px;
+                
             }
 
             .tier-items {
@@ -139,7 +144,7 @@
                 display: flex; /* 가로 배치(라벨/아이템) */
                 flex-wrap: wrap; /* 유연한 줄바꿈(Wrap) */
                 flex-grow: 1; /* 잔여 공간 채우기(Grow) */
-
+                
             }
 
             /* 아이템 대기소 */
@@ -149,6 +154,7 @@
                 min-height: 200px;
                 display: flex;
                 flex-wrap: wrap;
+                max-height: 500px;
 
 
             }
@@ -157,11 +163,11 @@
             .preview-box {
                 background-color: #ffffff;
                 border-radius: 12px;
-                padding: 50px;
-                margin-bottom: 50px;
+                padding: 30px;
+                margin-bottom: 30px;
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
                 text-align: center;
-                min-height: 400px;
+                min-height: 150px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -169,10 +175,10 @@
             }
 
             .preview-box img {
-                width: 100%;
-                height: 300px;
+                width: 170px;
+                height: 230px;
                 object-fit: cover;
-                border-radius: 8px;
+                border-radius: 5px;
                 margin-bottom: 10px;
             }
 
@@ -189,10 +195,10 @@
 
             /* 개별 아이템 디자인 */
             .item {
-                width: 80px;
-                height: 80px;
+                width: 70px;
+                height: 70px;
                 cursor: grab;
-                border-radius: 8px;
+                border-radius: 7px;
                 overflow: hidden;
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                 position: relative;
@@ -202,7 +208,8 @@
 
             .item:hover {
                 transform: scale(1.05);
-                border: 2px solid #3b82f6;
+                border: 2px solid black;
+                box-shadow: 0 0 15px gold; /* 아이템 박스 그림자 효과*/
             }
 
             .item img {
@@ -242,7 +249,19 @@
                     font-size: 1.5rem;
                 }
             }
-           /*ai사용*/
+           /* 백그라운드 이미지 */
+            body {
+    background-image: url("https://i.pinimg.com/1200x/5e/b6/96/5eb696a8dded4141a036646a08edd6d6.jpg");
+    background-position: top;    
+       
+   background-position: center; 
+    background-attachment: fixed;
+    background-size: cover
+}
+           
+           
+           
+            /*ai사용*/
             /* 이미지 자체가 드래그의 주인공이 되지 않도록 설정 */
 .item img {
     pointer-events: none; /* 이미지가 마우스 이벤트를 먹지 않게 함 */
@@ -255,9 +274,11 @@
     <body>
 
         <header>
-            <h1>4조 🎬 영화/드라마 티어 리스트</h1>
-            <p>우리 조원들이 직접 선정한 10개 내외의 항목을 평가해 봅시다.</p>
+    <h1>4조 🎬 영화/드라마 티어 리스트</h1>
+    <p>우리 조원들이 직접 선정한 10개 내외의 항목을 평가해 봅시다.</p>
         </header>
+        
+        
 
         <div class="layout-wrapper">
             <main class="tier-board">
@@ -288,7 +309,7 @@
                     <p class="preview-placeholder">아이템에 마우스를 올리면<br>상세 정보가 표시됩니다.</p>
                 </div>
 
-                <h2 style="font-size: 1.2rem; margin-bottom: 10px; color: #333;">📌 아이템 대기열</h2>
+                <h2 style="font-size: 1.2rem; margin-bottom: 10px;color: white; text-shadow: 2px 2px 4px black; color: white;">📌 아이템 대기열</h2>
                 <div class="item-pool" id="pool" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <!-- 조원들이 전달해준 아이템 코드를 여기에 붙여넣습니다. -->
                     <!--항목 이름 바꾸기-->
@@ -402,7 +423,7 @@
                 ev.target.closest('.tier-items').appendChild(draggedElement);
             } else if (ev.target.closest('.item-pool')) {
                 ev.target.closest('.item-pool').appendChild(draggedElement);
-            }
+          }
         }
      
 
@@ -414,11 +435,6 @@
                 preview.innerHTML = '<img src="' + imgSrc + '" alt="미리보기 이미지"><p>' + itemName + '</p>';
             }
 
-            
-        </script>
-    </body>
-
-    </html>
             
         </script>
     </body>
